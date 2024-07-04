@@ -126,9 +126,58 @@ export const metadata: Metadata = {
   title: 'Next.js',
 }
 
+// fetching data on the server with fetch
+// the returned values of fetch are automatically cached in the Data Cache
+async function getData() {
+  const res = await fetch('https://api.example.com/...', { cache: 'force-cache' }) // ", { cache: 'force-cache' }" is the default, so can be ommitted
+  // The return value is NOT serialized
+  // You can return Date, Map, Set, etc
+
+  // revalidating data - purging data cache and re-fetching the latest data
+  // const res = await fetch('https://api.example.com/...', { next: { revalidate: 3600 } })
+  // this is a timed revalidation
+  // manual revalidations can be done by adding an optional tag to cache entries
+  // then calling revalidateTag to revalidate all entries with that tag
+  // this process is shown on line 156 and in app/actions.tsx
+
+  if (!res.ok) {
+    // This will activate the closest 'error.js' Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+
+  return res.json()
+}
+
 export default function Page() {
+// for basic fetching:
+// export default async function Page() {
+  //const data = await getData()
+
+// for manual revalidating:
+// export default async function Page() {
+  // const res = await fetch('https://...', { next: { tags: ['collection'] } })
+  // const data = await res.json()
+
   // return <h1>Hello, world!</h1>
   // const router = useRouter()
   return <Link href="/dashboard">Dashboard</Link>
   // <Link href="/dashboard#settings">Settings</Link> for scrolling to a specific id on navigation
 }
+
+// SERVER ACTIONS are async functions executed on the server
+// can be used in Server and Client components to handle form submissions and data mutations
+// defined by 'use server'
+// these can be placed at the top of async functions to make them Server Actions
+// or at the top of a file to mark all exports of that file as Server Actions
+// ex of the former:
+// Server Component
+// export default function Page() {
+  // Server Action
+  // async function create() {
+    // 'use server'
+    // ...
+  // }
+  // return (
+    // ...
+  // )
+// }

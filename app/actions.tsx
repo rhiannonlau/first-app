@@ -25,3 +25,12 @@ export async function updateUsername(username: string, formData: FormData) {
     revalidateTag('username') // Update all references to the username
     permanentRedirect(`/profile/${username}`) // Navigate to the new user profile
 }
+
+// manual (on-demand) revalidation continued from app/page.tsx
+export default async function action() {
+    revalidateTag('collection')
+}
+
+export async function create() {
+    // ...
+}
