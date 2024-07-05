@@ -122,6 +122,11 @@ import Link from 'next/link'
 // but metadata cannot be used when 'use client' is used
 // import { useRouter } from 'next/navigation'
 
+// Server Actions, specifically pending states
+// explained more in app/submit-button.tsx
+import { SubmitButton } from '@/app/submit-button'
+import { createItem } from '@/app/actions'
+
 export const metadata: Metadata = {
   title: 'Next.js',
 }
@@ -181,3 +186,16 @@ export default function Page() {
     // ...
   // )
 // }
+
+// Server Component
+// example is written as: export default async function Home() {
+// but there cannot be two defaults, so i removed default to
+// remove the error flag
+export async function Home() {
+  return (
+    <form action={createItem}>
+      <input type="text" name="field-name" />
+      <SubmitButton />
+    </form>
+  )
+}
