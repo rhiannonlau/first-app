@@ -167,6 +167,16 @@ export default function Page() {
   // const router = useRouter()
   return <Link href="/dashboard">Dashboard</Link>
   // <Link href="/dashboard#settings">Settings</Link> for scrolling to a specific id on navigation
+
+  // TAINTING from next.config.js and app/utils.tsx
+  // const userData = getUserData()
+  // return (
+    // <ClientComponent
+      // user={userData} // this will cause an error because of taintObjectReference
+      // address={userData.address} // this will cause an error because of taintUniqueValue
+    // />
+  // )
+
 }
 
 // SERVER ACTIONS are async functions executed on the server
