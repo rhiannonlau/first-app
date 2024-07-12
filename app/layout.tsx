@@ -37,3 +37,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
     </>
   )
 }
+
+// Note: you CANNOT import a Server Component into a Client
+// Component
+// However, you CAN pass Server Components as a prop to a
+// Client Component
+// A common pattern is to use the React children prop to
+// create a "slot" in your Client Component, as demonstrated
+// in app/client-component.tsx

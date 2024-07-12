@@ -177,6 +177,22 @@ export default function Page() {
     // />
   // )
 
+  // RENDERING:
+  // PASSING SERVER COMPONENTS AS CHILD OR PROP OF A CLIENT COMPONENT
+  // continued from app/layout.tsx and app/client-component.tsx
+  // return (
+    // <ClientComponent>
+      // <ServerComponent />
+    // </ClientComponent>
+  // )
+  // don't forget "import ClientComponent from './client-component'"
+  // and "import ServerComponent from './server-component'" at the top
+  // With this approach, <ClientComponent> and <ServerComponent>
+  // are decoupled and can be rendered independently
+  // In this case, the child <ServerComponent> can be rendered on
+  // the server, well before <ClientComponent> is rendered on the
+  // client
+
 }
 
 // SERVER ACTIONS are async functions executed on the server
