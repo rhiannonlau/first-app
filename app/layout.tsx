@@ -3,6 +3,13 @@
 // SearchBar is a Client Component
 import SearchBar from './searchbar'
 
+// RENDERING: RUNTIME
+// continued from app/page.tsx
+// summary: specifying a runtime for individual route segments.
+// doing this on a layout level makes all routes under the
+// layout run on the same runtime:
+export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+
 export default function RootLayout({
   children,
 }: {

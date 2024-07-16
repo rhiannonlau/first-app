@@ -131,6 +131,17 @@ export const metadata: Metadata = {
   title: 'Next.js',
 }
 
+// RENDERING: RUNTIME
+// you can specify a runtime for individual route segments
+// in your Next.js app. to do so, decalre a variable called
+// runtime and export it. the var must be a string and it
+// must have a value of either 'nodejs' or 'edge' runtime.
+// the following demonstrates a page route segment that
+// exports a runtime with a value of 'edge':
+export const runtime = 'edge' // 'nodjs' (default) | 'edge'
+// you can also define runtime on a layout level, as shown
+// in app/layout.tsx
+
 // fetching data on the server with fetch
 // the returned values of fetch are automatically cached in the Data Cache
 async function getData() {
